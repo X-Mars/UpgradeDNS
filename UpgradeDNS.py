@@ -11,7 +11,7 @@ import json,urllib,re
 #替换以下参数
 ID="1223"
 Secret="hjh"
-RegionId="cn-hjk"
+RegionId="cn-hangzhou"
 DomainName="xxx.com"
 #想要自动修改的主机名和域名类型
 HostNameList = ['www','@']
