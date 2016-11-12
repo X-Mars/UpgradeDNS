@@ -1,3 +1,4 @@
+#coding:utf-8
 #Auther：火星小刘
 #Email：xtlyk@163.com
 #转载请保留出处
