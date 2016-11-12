@@ -33,12 +33,12 @@ def GetDomainList():
     print DNSListJson
 
 #更新域名ip
-def EditDomainRecord(HostName, RecordId, IP):
+def EditDomainRecord(HostName, RecordId, Types, IP):
     UpdateDomainRecord = UpdateDomainRecordRequest.UpdateDomainRecordRequest()
     UpdateDomainRecord.set_accept_format('json')
     UpdateDomainRecord.set_RecordId(RecordId)
     UpdateDomainRecord.set_RR(HostName)
-    UpdateDomainRecord.set_Type('A')
+    UpdateDomainRecord.set_Type(Types)
     UpdateDomainRecord.set_TTL('600')
     UpdateDomainRecord.set_Value(IP)
     UpdateDomainRecordJson = json.loads(clt.do_action(UpdateDomainRecord))
@@ -57,7 +57,7 @@ def GetAllDomainRecords(DomainName, Types, IP):
             if RR == HostName and Type == Types:
                 RecordId = x['RecordId']
                 print RecordId
-                EditDomainRecord(HostName, RecordId, IP)
+                EditDomainRecord(HostName, RecordId, Types, IP)
 
 IP = GetLocalIP()
 GetDomainList()
