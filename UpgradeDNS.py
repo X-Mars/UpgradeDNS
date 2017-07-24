@@ -10,10 +10,10 @@ import json,urllib,re
 
 
 #替换以下参数
-ID="1223"
-Secret="hjh"
+ID="xxxxx"
+Secret="xxxxx"
 RegionId="cn-hangzhou"
-DomainName="xxx.com"
+DomainName="xxxx.com"
 #想要自动修改的主机名和域名类型
 HostNameList = ['www','@']
 Types = "A"
@@ -30,7 +30,7 @@ def GetLocalIP():
 def GetDomainList():
     DomainList = DescribeDomainsRequest.DescribeDomainsRequest()
     DomainList.set_accept_format('json')
-    DNSListJson = json.loads(clt.do_action(DomainList))
+    DNSListJson = json.loads(clt.do_action_with_exception(DomainList))
     print DNSListJson
 
 #更新域名ip
@@ -42,7 +42,7 @@ def EditDomainRecord(HostName, RecordId, Types, IP):
     UpdateDomainRecord.set_Type(Types)
     UpdateDomainRecord.set_TTL('600')
     UpdateDomainRecord.set_Value(IP)
-    UpdateDomainRecordJson = json.loads(clt.do_action(UpdateDomainRecord))
+    UpdateDomainRecordJson = json.loads(clt.do_action_with_exception(UpdateDomainRecord))
     print UpdateDomainRecordJson
 
 #获取域名信息
@@ -50,7 +50,7 @@ def GetAllDomainRecords(DomainName, Types, IP):
     DomainRecords = DescribeDomainRecordsRequest.DescribeDomainRecordsRequest()
     DomainRecords.set_accept_format('json')
     DomainRecords.set_DomainName(DomainName)
-    DomainRecordsJson = json.loads(clt.do_action(DomainRecords))
+    DomainRecordsJson = json.loads(clt.do_action_with_exception(DomainRecords))
     for HostName in HostNameList:
         for x in DomainRecordsJson['DomainRecords']['Record']:
             RR = x['RR']
