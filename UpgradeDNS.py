@@ -22,8 +22,8 @@ clt = client.AcsClient(ID,Secret,RegionId)
 
 #获取公网ip
 def GetLocalIP():
-    IPInfo = urllib.urlopen("http://ip.chinaz.com/getip.aspx").read()
-    IP = re.findall(r"ip:'(.*?)',", IPInfo)[0]
+    IPInfo = urllib.urlopen("https://api.ipify.org/?format=json").read()
+    IP = IPInfo['ip']
     return IP
 
 #获取域名列表（暂时无用）
